@@ -1,0 +1,30 @@
+---
+version: '3.6'
+services:
+  # TAG=6.0.0-beta1 docker-compose up
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:${TAG}
+    container_name: elasticsearch
+    secrets:
+      - source: elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+    ports: ['9200:9200']
+    networks: ['stack']
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:${TAG}
+    container_name: kibana
+    secrets:
+      - source: kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+    ports: ['5601:5601']
+    networks: ['stack']
+    depends_on: ['elasticsearch']
+
+networks: {stack: {}}
+
+secrets:
+  elasticsearch.yml:
+    file: ./config/elasticsearch/elasticsearch.yml
+  kibana.yml:
+    file: ./config/kibana/kibana.yml

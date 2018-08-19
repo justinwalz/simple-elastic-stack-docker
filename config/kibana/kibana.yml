@@ -1,0 +1,4 @@
+# These are defaults, see https://www.elastic.co/guide/en/kibana/6.3/docker.html
+server.name: kibana
+server.host: "0"
+elasticsearch.url: http://elasticsearch:9200
