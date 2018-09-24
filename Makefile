@@ -1,14 +1,16 @@
+TAG ?= "6.4.1"
+
 up:
-	TAG=6.3.2 docker-compose up
+	TAG=${TAG} docker-compose up
 
 down:
-	TAG=6.3.2 docker-compose down
+	TAG=${TAG} docker-compose down
 
 create:
-	TAG=6.3.2 docker-compose up --no-start
+	TAG=${TAG} docker-compose up --no-start
 
 start:
-	TAG=6.3.2 docker-compose start
+	TAG=${TAG} docker-compose start
 
 background: create start
 
